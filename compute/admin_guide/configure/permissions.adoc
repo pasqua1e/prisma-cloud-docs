@@ -23,6 +23,12 @@ You can also review the <<#aws-agentless,permissions needed for agentless scanni
 include::https://docs.google.com/spreadsheets/d/e/2PACX-1vQGxhsOAAuj13OSYtAJCzU2CQ5G12FZxro0vHaqf8Tzcm96ZCxhxAW2jeT3__HfvliAMXUwGG_Hly8g/pub?output=csv&gid=338970097[]
 |===
 
+---------------------------
+Comments by Pasquale Russiello: Hi guys, the following permission is missing in the first table secretsmanager:GetSecretValue
+Additionally, I'd like to request an important enhancement (IMHO): Could we please add the column "Removal" to the first table, identically to what we've done for agentless to indicate what happens if a specific permission is missing?
+Many thanks
+---------------------------
+
 [#aws-agentless]
 ==== Agentless Permissions
 
