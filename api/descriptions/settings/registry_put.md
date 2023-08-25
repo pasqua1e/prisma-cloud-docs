@@ -7,6 +7,10 @@ To invoke this endpoint in the Console UI:
 2. Under the **Registries** table, add a registry item using **+ Add registry**
 3. Click the **Save** button.
 
+**Note**: From 22.11 (Lagrange) release or later, you can add a maximum of 19,999 registry entries in **Defend > Vulnerabilities > Images > Registry settings**. 
+
+The API response returns an HTTP 400 error, if the number of registry specifications exceeds the maximum allowable limit of 19,999 registry entries.
+
 ### General Set up and Scan Process
 
 This endpoint works hand-in-hand with the `/policies` endpoints.
@@ -72,7 +76,7 @@ The following cURL command overwrites the current list of registries to scan wit
 * All repositories in a private AWS ECR registry
 
 ```bash
-$ curl 'https://<CONSOLE>/api/v1/settings/registry' \
+$ curl 'https://<CONSOLE>/api/v<VERSION>/settings/registry' \
   -k \
   -X PUT \
   -u <USER> \
@@ -122,5 +126,5 @@ curl -k \
   -H 'Content-Type: application/json' \
   -X PUT \
   -d '{"specifications":[]}' \
-  https://<CONSOLE>/api/v1/settings/registry
+  https://<CONSOLE>/api/v<VERSION>/settings/registry
 ```

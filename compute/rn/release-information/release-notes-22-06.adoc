@@ -36,12 +36,12 @@ The following table outlines the release particulars:
 * <<bug-fixes,Addressed Issues>>
 //* <<breaking-changes,Breaking Changes>>
 * <<non-breaking-changes,Changes in Existing Behavior>>
-//* <<end-of-support-notifications,End of Support Notifications>>
-* <<supported-host-os, Supported Operating Systems>>
+* <<end-of-support-notifications,End of Support Notifications>>
+* <<supported-host-os,Supported Operating Systems>>
 * <<known-issues,Known Issues>>
 //* <<limitations,Limitations>>
-* <<deprecation-notifications, Deprecation Notifications>>
-* <<backward_compatibility, Backward Compatibility for New Features>> 
+* <<deprecation-notifications,Deprecation Notifications>>
+* <<backward_compatibility,Backward Compatibility for New Features>> 
 
 
 [#cve-coverage-update]
@@ -60,6 +60,13 @@ As an example, the SpringShell CVE (CVE-2022-22965) was published on March 31, 2
 
 [#new-features-in-the-core-platform]
 === New Features in the Core Platform
+
+In addition to familiarizing yourself with the new features and enhancements in this release, review the minimum https://docs.paloaltonetworks.com/prisma/prisma-cloud/22-06/prisma-cloud-compute-edition-admin/install/system_requirements.html[System Requirements] for versions that are tested and supported on 22.06. 
+
+To download the Prisma Cloud Compute Edition release tarball from the Palo Alto Networks Customer Support Portal (CSP):
+
+. Log in to the https://support.paloaltonetworks.com/[Palo Alto Networks Customer Support Portal].
+. Go to  *Updates > Software Updates* and select *Prisma Cloud Compute Edition*.
 
 ==== New Filters in the Vulnerability Explorer
 
@@ -237,7 +244,7 @@ After you https://docs.paloaltonetworks.com/prisma/prisma-cloud/22-06/prisma-clo
 
 // #29474
 
-`twistcli` can https://stage.docs.paloaltonetworks.com/prisma/prisma-cloud/22-06/prisma-cloud-compute-edition-admin/tools/twistcli_scan_images.html[scan image tarballs] for the https://github.com/moby/moby/tree/00d8a3bb516ad1e14c56ccdfeb70736bbeb0ba49/image/spec[Docker Image Specification] v1.1 and later.
+`twistcli` can https://docs.paloaltonetworks.com/prisma/prisma-cloud/22-06/prisma-cloud-compute-edition-admin/tools/twistcli_scan_images.html[scan image tarballs] for the https://github.com/moby/moby/tree/00d8a3bb516ad1e14c56ccdfeb70736bbeb0ba49/image/spec[Docker Image Specification] v1.1 and later.
 
 This enhancement enables support for vendors who deliver container images as tar files, not via a registry, and the integration with https://github.com/GoogleContainerTools/kaniko#readme[Kaniko], a tool that builds images in a Kubernetes cluster from a Dockerfile without access to a Docker daemon.
 
@@ -437,13 +444,16 @@ The data for each CVE, such as impacted packages, highest severity, and so on, i
 
 Also, the impacted resources and distribution counts are not retrieved and are returned as zero when you apply filters or are assigned with specific collections or accounts.
 
+One more change in this API endpoint is that the value of the `status` field will now be empty. In the context of a CVE, there can be multiple fix statuses, depending on the impacted package. Therefore, providing a fix status per CVE is incorrect and was removed. 
+To get the right fix status according to the package, use additional endpoint to fetch the resources impacted by the CVE and their details.
+
 ==== GET /stats/vulnerabilities/impacted-resources
 
 // #37351, #37356
 Introduces new optional query parameters such as *pagination* and *resource type* to the existing API endpoint.
 To enable backward compatibility, if you don’t use these optional query parameters, the API response will display results without pagination and registry images, and similar to the response in the previous releases (Joule or earlier).
 
-*Note*- Make sure to update your scripts before the Newton release. Starting with the Newton release, the API response will no longer support requests without the pagination and resource type query parameters.
+*Note:* Make sure to update your scripts before the Newton release. Starting with the Newton release, the API response will no longer support requests without the pagination and resource type query parameters.
 
 ==== GET /stats/vulnerabilities/download
 
@@ -545,10 +555,13 @@ In accordance with the https://docs.paloaltonetworks.com/prisma/prisma-cloud/22-
 
 
 
-// [#end-of-support-notifications]
-// === End of Support Notifications
-// The following list of items are no longer supported in 22.06.
+[#end-of-support-notifications]
+=== End of Support Notifications
 
+The following list of items are no longer supported in 22.06.
+
+// #34188
+* With the RedHat EOL announcement for OpenShift 3.11, Prisma Cloud no longer supports Openshift 3.11.
 
 [#supported-host-os]
 === Supported Host Operating Systems
@@ -628,6 +641,9 @@ Fargate tasks protected by App-Embedded Defender will be reported under the *App
 [#known-issues]
 === Known Issues
 
+//pcsup-11309
+* The --tarball option in twistcli does not scan for compliance checks. Currently, only vulnerabilities are detected successfully.
+
 // #22837
 * When Defender is installed on Windows hosts in AWS, and Prisma Cloud Compute Cloud Discovery is configured to scan your environment for protected hosts, the Windows hosts running Defender are reported as unprotected.
 
@@ -644,9 +660,6 @@ Fargate tasks protected by App-Embedded Defender will be reported under the *App
 [#deprecation-notifications]
 === Upcoming Deprecation Notifications
 
-// #34188
-* Support for Openshift 3.11 will be removed in the next release, Lagrange.
-
 // # 39473 (email from Mor)
 * Support for Windows Server 2022 will be added with or before the next release, Lagrange. 
 With support for Windows Server 2022, Windows Server 2016 will no longer be supported.
@@ -658,10 +671,11 @@ Microsoft has announced the https://docs.microsoft.com/en-us/lifecycle/products/
 Support will be removed in the Newton release.
 
 // #36042
-* Support for scanning your code repositories and CI pipelines from the Prisma Cloud Compute console (*Monitor > Vulnerabilities > Code repositories*) and twistcli is being deprecated. 
-You can use the Code Security module on Prisma Cloud to scan code repositories amd CI pipelines for misconfigurations and vulnerabilities.
+* Support for scanning your code repositories from the Prisma Cloud Compute console (*Monitor > Vulnerabilities > Code repositories*) is being deprecated. 
+Twistcli for code repository scanning is also being deprecated.
+You can use the Code Security module on Prisma Cloud to scan code repositories and CI pipelines for misconfigurations and vulnerabilities.
 +
-Support for code repo scanning and CI pipelines using Prisma Cloud Compute will be removed in the Newton release.
+Support for code repo scanning using Prisma Cloud Compute will be removed in the Newton release.
 
 
 [#backward_compatibility]

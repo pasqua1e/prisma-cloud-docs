@@ -43,22 +43,16 @@ Scan intervals are specified in hours.
 
 Console reports the last time Defender scanned your environment.
 Go to *Manage > Defenders > Manage*, and click a row in the table to get a detailed status report for each deployed Defender.
-The status column shows the last time Defender scanned the containers and images on the host where it runs.
-When Defender is delegated the registry scanner role, you can also see the last time your registry was scanned.
+The sidecar shows the last time Defender scanned the containers and images on the host where it runs.
 
-image::configure_scan_intervals_defender_details.png[width=500]
-
-Defender roles are displayed in the *Manage > Defenders > Manage* table.
-The following screenshot shows that Defender on host ian-23 is a registry scanner.
-
-image::configure_scan_intervals_defender_list.png[width=800]
+image::configure_scan_intervals_defender_details.png[width=350]
 
 
 === Scan performance
 
 Scanning for malware in archives in container images consumes a lot of resources.
 The scanner unpacks each archive to search for malicious software.
-Checksums must be indiviudally calculated for each file.
+Checksums must be individually calculated for each file.
 Because of the performance impact and the way containers tend to be used, malware in archives is an unlikely threat.
 As such, *Scan for malware within archives in images* is disabled by default.
 

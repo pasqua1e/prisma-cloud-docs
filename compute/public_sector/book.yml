@@ -5,10 +5,11 @@ version: 0.0
 author: Prisma Cloud team
 ditamap: prisma-cloud-compute-edition-public-sector
 dita: techdocs/en_US/dita/prisma/prisma-cloud/prisma-cloud-compute-edition-public-sector
-repo:
-  url: https://github.com/PaloAltoNetworks/prisma-cloud-docs
-  branch: master
+github:
+  owner: PaloAltoNetworks
+  repo: prisma-cloud-docs
   bookdir: compute/public_sector
+  branch: master
 ---
 kind: chapter
 name: DISA STIG
@@ -16,8 +17,6 @@ dir: disa_stig
 topics:
 - name: DISA STIG Support
   file: disa_stig.adoc
-- name: DISA STIG for Prisma Cloud Compute Configuration
-  file: disa_stig_compute_configuration.adoc
 - name: Application Security and Development v4 r11 STIG
   dir: STIG_ASD_v4_r11
   topics:
@@ -49,16 +48,46 @@ topics:
   file: Release_Findings.adoc
 - name: Methodology
   file: methodology.adoc
+- name: 30.03.122
+  dir: v30_03_122
+  topics:
+  - name: Scan results
+    file: v30_03_122.adoc
+- name: 30.02.123
+  dir: v30_02_123
+  topics:
+  - name: Scan results
+    file: v30_02_123.adoc
+- name: 30.01.153
+  dir: v30_01_153
+  topics:
+  - name: Scan results
+    file: v30_01_153.adoc
+- name: 22.12.415
+  dir: v22_12_415
+  topics:
+  - name: Scan results
+    file: v22_12_415.adoc
+- name: 22.06.224
+  dir: v22_06_224
+  topics:
+  - name: Scan results
+    file: v22_06_224.adoc
+- name: 22.06.197
+  dir: v22_06_197
+  topics:
+  - name: Scan results
+    file: v22_06_197.adoc
 - name: 22.06.179
   dir: v22_06_179
   topics:
   - name: Scan results
-    file: V22_06_179.adoc
+    file: v22_06_179.adoc
 - name: 22.01.880
   dir: v22_01_880
   topics:
   - name: Scan results
-    file: V22_01_880.adoc
+    file: v22_01_880.adoc
 - name: 22.01.840
   dir: v22_01_840
   topics:
