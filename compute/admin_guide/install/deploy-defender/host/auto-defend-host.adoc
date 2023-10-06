@@ -79,7 +79,6 @@ Add the following policy to an IAM user or role:
             "Action": [
                 "ec2:DescribeImages",
                 "ec2:DescribeInstances",
-                "ssm:SendCommand",
                 "ssm:DescribeInstanceInformation",
                 "ssm:ListCommandInvocations",
                 "ssm:CancelCommand",
